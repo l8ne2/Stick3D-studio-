@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stick3D Shorts Studio — Ultra-HD Gratuit (FLUX.1 & Gemini Style-Ref)</title>
+  <style>
+    :root {
+      --bg: #0b0e14;
+      --panel: #131822;
+      --panel-2: #1a2130;
+      --border: #283248;
+      --text: #eef2ff;
+      --muted: #9aa5be;
+      --gold: #f5b942;
+      --gold-dark: #d4941c;
+      --accent: #4f8cff;
+      --green: #22c55e;
+      --danger: #ef4444;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      background: #0f131c;
+      border-bottom: 1px solid var(--border);
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .logo-badge {
+      width: 38px; height: 38px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--gold), #ff6b35);
+      color: #111; font-weight: 900; font-size: 16px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .brand h1 { font-size: 17px; font-weight: 800; }
+    .brand span { font-size: 12px; color: var(--green); font-weight: 600; display: block; }
+    .top-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    button, .btn {
+      cursor: pointer; border: 1px solid var(--border); background: var(--panel-2);
+      color: var(--text); padding: 8px 13px; border-radius: 9px; font-weight: 600;
+      font-size: 13px; transition: all 0.15s ease; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    button:hover, .btn:hover { border-color: #46577d; background: #222b3e; }
+    button:disabled { opacity: 0.55; cursor: not-allowed; }
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: #111; border: none; font-weight: 800;
+    }
+    .btn-gold:hover { filter: brightness(1.07); background: linear-gradient(135deg, var(--gold), var(--gold-dark)); }
+    .btn-accent { background: rgba(79,140,255,0.16); border-color: rgba(79,140,255,0.45); color: #b8d2ff; }
+    .btn-green { background: rgba(34, 197, 94, 0.15); border-color: rgba(34, 197, 94, 0.45); color: #86efac; }
+    .btn-danger { background: rgba(239,68,68,0.12); border-color: rgba(239,68,68,0.35); color: #fca5a5; }
+    select, input[type="text"], input[type="password"], textarea {
+      width: 100%; background: #0d1119; border: 1px solid var(--border);
+      color: var(--text); border-radius: 8px; padding: 8px 10px; font-size: 13px; font-family: inherit;
+    }
+    select:focus, input:focus, textarea:focus { outline: none; border-color: var(--gold); }
+    label { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; display: block; margin-bottom: 5px; }
+
+    /* Modal / Drawer for Free HD Boost Keys */
+    .keys-banner {
+      background: linear-gradient(90deg, #151e30, #1c2436);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+      display: none;
+    }
+    .keys-banner.open { display: block; }
+    .keys-grid {
+      display: grid; grid-template-columns: 1fr 1fr auto; gap: 12px; align-items: end; max-width: 1250px; margin-top: 8px;
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: 330px 1fr 340px;
+      gap: 14px;
+      padding: 14px 18px;
+      flex: 1;
+      min-height: 0;
+    }
+    @media (max-width: 1180px) { main { grid-template-columns: 1fr; } }
+    .card {
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 12px;
+    }
+    .card-title {
+      font-size: 14px; font-weight: 800; display: flex; align-items: center; justify-content: space-between;
+      padding-bottom: 8px; border-bottom: 1px solid var(--border);
+    }
+
+    /* Style ref box */
+    .ref-box {
+      display: flex; gap: 10px; align-items: center; background: #0d1119;
+      border: 1px solid var(--border); border-radius: 10px; padding: 8px;
+    }
+    .ref-box img {
+      width: 52px; height: 84px; object-fit: cover; border-radius: 6px; border: 1px solid var(--gold); flex-shrink: 0;
+    }
+    .ref-info { font-size: 11.5px; color: var(--muted); line-height: 1.35; }
+    .ref-info strong { color: var(--gold); display: block; margin-bottom: 3px; }
+
+    .shots-list {
+      display: flex; flex-direction: column; gap: 12px;
+      max-height: calc(100vh - 170px); overflow-y: auto; padding-right: 4px;
+    }
+    .shot-card {
+      background: var(--panel-2); border: 1px solid var(--border); border-radius: 12px;
+      padding: 12px; display: grid; grid-template-columns: 126px 1fr; gap: 12px;
+    }
+    .shot-thumb {
+      width: 126px; height: 224px; border-radius: 9px; background: #0b0e14;
+      border: 1px dashed #3a4763; overflow: hidden; position: relative;
+      display: flex; align-items: center; justify-content: center; text-align: center;
+      font-size: 11px; color: var(--muted); padding: 6px;
+    }
+    .shot-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .shot-num {
+      position: absolute; top: 6px; left: 6px; background: rgba(0,0,0,0.8);
+      color: var(--gold); font-weight: 800; font-size: 11px; padding: 2px 7px; border-radius: 6px;
+    }
+    .provider-tag {
+      position: absolute; bottom: 5px; left: 5px; right: 5px;
+      background: rgba(0,0,0,0.78); color: #86efac; font-size: 9.5px; font-weight: 700;
+      padding: 2px 4px; border-radius: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .shot-fields { display: flex; flex-direction: column; gap: 8px; }
+    .shot-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .shot-actions { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 2px; }
+
+    .phone-frame {
+      width: 100%; max-width: 285px; aspect-ratio: 9 / 16; margin: 0 auto;
+      background: #05070b; border: 3px solid #2b354b; border-radius: 20px;
+      overflow: hidden; display: flex; align-items: center; justify-content: center;
+    }
+    .phone-frame video { width: 100%; height: 100%; object-fit: contain; background: #000; }
+    .progress-box {
+      background: #0d1119; border: 1px solid var(--border); border-radius: 10px;
+      padding: 10px; display: none; flex-direction: column; gap: 7px;
+    }
+    .progress-bar-bg { width: 100%; height: 8px; background: #1e2638; border-radius: 99px; overflow: hidden; }
+    .progress-bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--gold), #ff7b39); transition: width 0.3s ease; }
+    .hint { font-size: 11.5px; color: var(--muted); line-height: 1.4; }
+    .pill-ok { font-size: 11px; padding: 2px 7px; border-radius: 99px; background: rgba(34,197,94,0.18); color: #86efac; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo-badge">S3D</div>
+      <div>
+        <h1>Stick3D Shorts Studio <small style="color:var(--gold);font-size:12px;">v2 Ultra-HD</small></h1>
+        <span>Moteur FLUX.1 (12B) + Gemini Style-Ref • Français → Anglais auto • 0€ sans filigrane</span>
+      </div>
+    </div>
+    <div class="top-actions">
+      <select id="projectSelect" style="width: 235px;" onchange="loadProject(this.value)"></select>
+      <button onclick="createNewProject()">+ Nouveau Short</button>
+      <button class="btn-accent" onclick="toggleKeysPanel()" id="btnKeysToggle">⚡ Boost HD Gratuit (FLUX / Gemini)</button>
+      <a class="btn btn-green" href="/api/download-studio-zip" download>⬇ Télécharger Studio PC (.zip)</a>
+    </div>
+  </header>
+
+  <!-- Panneau optionnel Clés 100% Gratuites sans CB -->
+  <div class="keys-banner" id="keysBanner">
+    <div style="font-size:12.5px; color:#dce6ff; line-height:1.45;">
+      <strong>🎯 Qualité identique à votre image modèle :</strong> Le studio utilise déjà <strong>FLUX.1 (12 milliards de paramètres)</strong> gratuitement.
+      Comme les serveurs publics anonymes limitent le nombre d'images par heure, vous pouvez coller <strong>au choix</strong> un jeton <strong>100% gratuit (0€, sans carte bancaire)</strong> pour générer en illimité et cloner votre image modèle au pixel près :
+    </div>
+    <div class="keys-grid">
+      <div>
+        <label>Clé Google AI Studio Gratuite (Recommandé — Clone l'image modèle !)</label>
+        <input type="password" id="geminiKeyInput" placeholder="AIzaSy... (Gratuit sur aistudio.google.com/apikey)" />
+      </div>
+      <div>
+        <label>Token Hugging Face Gratuit (25× quota gratuit sur FLUX.1-dev & merged)</label>
+        <input type="password" id="hfTokenInput" placeholder="hf_... (Gratuit sur huggingface.co/settings/tokens)" />
+      </div>
+      <div style="display:flex; gap:8px;">
+        <button class="btn-gold" onclick="saveFreeKeys()">Enregistrer</button>
+        <button onclick="toggleKeysPanel()">Fermer</button>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- COLONNE GAUCHE -->
+    <section class="card">
+      <div class="card-title">
+        <span>1. Style 2D/3D, Héros & Voix</span>
+        <button onclick="saveCurrentProject()" style="padding:5px 10px; font-size:12px;">💾 Sauver</button>
+      </div>
+
+      <div>
+        <label>Titre du projet</label>
+        <input type="text" id="projTitle" placeholder="Ex: Le braquage du train..." />
+      </div>
+
+      <div>
+        <label>Preset Visuel Maître</label>
+        <select id="projStyle" onchange="toggleCustomStyle()">
+          <option value="stickman_west_3d">🤠 Stickman 2D Tête Blanche + Décor 3D Far West (Style Modèle)</option>
+          <option value="stickman_modern_3d">🏙️ Stickman 2D Tête Blanche + Décor 3D Moderne Réaliste</option>
+          <option value="pixar_3d">🎬 Animation 3D Cinéma (Octane Render)</option>
+          <option value="comic_noir">🖋️ BD Franco-Belge / Comic encré</option>
+          <option value="custom">✨ Style personnalisé</option>
+        </select>
+      </div>
+
+      <!-- Aperçu de l'image modèle (image-1.png) -->
+      <div class="ref-box">
+        <img id="styleRefThumb" src="/api/style-reference" alt="Style modèle" onerror="this.style.opacity=0.2" />
+        <div class="ref-info">
+          <strong> Modèle Style Actif (2D dans 3D)</strong>
+          Tête ronde blanche pure, traits noirs épais, bras/jambes bâtons noirs, mains cartoon + décor & accessoires 3D réalistes.
+          <div style="margin-top:5px;">
+            <label style="display:inline-block; cursor:pointer; color:#93c5fd; text-transform:none; margin:0;">
+              📷 Changer d'image modèle
+              <input type="file" accept="image/*" style="display:none;" onchange="uploadStyleRef(this)" />
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <label>Tenue du Personnage Principal (gardée sur tous les plans)</label>
+        <textarea id="projCharSheet" rows="2" placeholder="Ex: Mineur stickman en chemise rouge à manches courtes, bretelles noires et casque de mineur 3D en cuir"></textarea>
+      </div>
+
+      <div id="customStyleBox" style="display:none;">
+        <label>Prompt de style personnalisé</label>
+        <textarea id="projCustomStyle" rows="2"></textarea>
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1fr auto; gap:8px; align-items:end;">
+        <div>
+          <label>Voix Off Française (Gratuit)</label>
+          <select id="projVoice"></select>
+        </div>
+        <button onclick="previewVoice()" title="Écouter la voix">🔊 Test</button>
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; align-items:center;">
+        <div>
+          <label>Vitesse (<span id="speedVal">1.06</span>x)</label>
+          <input type="range" id="projSpeed" min="0.85" max="1.30" step="0.02" value="1.06" oninput="document.getElementById('speedVal').textContent=this.value" style="width:100%;" />
+        </div>
+        <div style="padding-top:14px;">
+          <label style="display:flex; align-items:center; gap:7px; cursor:pointer; text-transform:none; color:var(--text); font-size:12.5px;">
+            <input type="checkbox" id="projSubs" checked /> Sous-titres Shorts
+          </label>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid var(--border); padding-top:10px; display:flex; flex-direction:column; gap:7px;">
+        <label>Découpeur automatique d'histoire (Français accepté !)</label>
+        <textarea id="rawScriptInput" rows="4" placeholder="Collez toute votre histoire en français ici : le studio la découpe en scènes ET traduit automatiquement les prompts en anglais cinéma pour FLUX.1 !"></textarea>
+        <button onclick="autoSplitScript()">✂️ Découper l'histoire en plans</button>
+      </div>
+    </section>
+
+    <!-- COLONNE CENTRALE -->
+    <section class="card">
+      <div class="card-title">
+        <span>2. Storyboard & Plans (<span id="shotCount">0</span>)</span>
+        <div style="display:flex; gap:8px;">
+          <button onclick="addEmptyShot()">+ Ajouter un plan</button>
+        </div>
+      </div>
+      <p class="hint">
+        Écrivez simplement l'action <strong>en français</strong> (ex: <em>"Le mineur fait un clin d'œil avec son fusil sur l'épaule dans la mine d'or"</em>) : le studio traduit automatiquement en anglais technique et applique l'anatomie exacte Stickman 2D + décor 3D réaliste !
+      </p>
+      <div class="shots-list" id="shotsContainer"></div>
+    </section>
+
+    <!-- COLONNE DROITE -->
+    <section class="card">
+      <div class="card-title">
+        <span>3. Aperçu 9:16 & Export MP4</span>
+      </div>
+
+      <div class="phone-frame">
+        <video id="videoPlayer" controls playsinline></video>
+      </div>
+
+      <div class="progress-box" id="progressBox">
+        <div style="display:flex; justify-content:space-between; font-size:12px; font-weight:700;">
+          <span id="progressMsg">Préparation...</span>
+          <span id="progressPct">0%</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="progressFill"></div>
+        </div>
+      </div>
+
+      <button class="btn-gold" id="btnRenderMissing" onclick="renderVideo(true)" style="justify-content:center; padding:12px;">
+        🎬 Générer la Vidéo MP4 (9:16)
+      </button>
+      <button id="btnRenderAll" onclick="renderVideo(false)" style="justify-content:center;">
+        🔄 Régénérer toutes les images HD + Vidéo
+      </button>
+
+      <a id="downloadVideoBtn" class="btn btn-green" style="display:none; justify-content:center;" download>
+        💾 Télécharger le fichier .MP4
+      </a>
+
+      <audio id="voiceAudioPreview" style="display:none;"></audio>
+    </section>
+  </main>
+
+  <script>
+    let currentProject = null;
+    let voicesList = [];
+
+    const CAMERAS = [
+      { id: "zoom_in", label: "🔍 Zoom Cinéma progressif" },
+      { id: "crash_zoom", label: "⚡ Crash-Zoom Punchy" },
+      { id: "pan_right", label: "➡️ Travelling Latéral" },
+      { id: "shake_boom", label: "💥 Secousse Impact / Tir" },
+      { id: "pull_back", label: "🎥 Recul Révélation Finale" }
+    ];
+
+    const SFX_LIST = [
+      { id: "none", label: "🔈 Transition douce seule" },
+      { id: "gunshot", label: "🔫 Coup de fusil + écho" },
+      { id: "explosion", label: "🧨 Explosion / Dynamite" },
+      { id: "bonk", label: "🪵 Choc / Bonk comique" },
+      { id: "kaching", label: "💰 Caisse / Argent (Ka-Ching)" },
+      { id: "magic", label: "✨ Scintillement d'or" },
+      { id: "suspense", label: "🔎 Suspense / Révélation" },
+      { id: "laugh", label: "😂 Rire / Comédie" }
+    ];
+
+    async function init() {
+      const cfg = await fetch("/api/config").then(r => r.json());
+      voicesList = cfg.voices || [];
+      updateKeysBadge(cfg.has_gemini_key, cfg.has_hf_token);
+      if (cfg.has_gemini_key) document.getElementById("geminiKeyInput").value = "***";
+      if (cfg.has_hf_token) document.getElementById("hfTokenInput").value = "***";
+
+      const vSel = document.getElementById("projVoice");
+      vSel.innerHTML = voicesList.map(v => `<option value="${v.id}">${v.label}</option>`).join("");
+      await refreshProjectList("demo-mine-dor");
+    }
+
+    function toggleKeysPanel() {
+      document.getElementById("keysBanner").classList.toggle("open");
+    }
+
+    function updateKeysBadge(hasGemini, hasHf) {
+      const btn = document.getElementById("btnKeysToggle");
+      if (hasGemini || hasHf) {
+        const active = [hasGemini ? "Gemini Ref" : "", hasHf ? "FLUX Pro" : ""].filter(Boolean).join(" + ");
+        btn.innerHTML = `✅ Boost HD Actif (${active})`;
+        btn.className = "btn-green";
+      } else {
+        btn.innerHTML = `⚡ Boost HD Gratuit (FLUX / Gemini)`;
+        btn.className = "btn-accent";
+      }
+    }
+
+    async function saveFreeKeys() {
+      const gemini_key = document.getElementById("geminiKeyInput").value;
+      const hf_token = document.getElementById("hfTokenInput").value;
+      const res = await fetch("/api/keys", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ gemini_key, hf_token })
+      }).then(r => r.json());
+      updateKeysBadge(res.has_gemini_key, res.has_hf_token);
+      document.getElementById("keysBanner").classList.remove("open");
+    }
+
+    async function uploadStyleRef(inputEl) {
+      if (!inputEl.files || !inputEl.files[0]) return;
+      const fd = new FormData();
+      fd.append("file", inputEl.files[0]);
+      const res = await fetch("/api/style-reference", { method: "POST", body: fd }).then(r => r.json());
+      document.getElementById("styleRefThumb").src = res.style_ref_url;
+    }
+
+    async function refreshProjectList(selectId = null) {
+      const data = await fetch("/api/projects").then(r => r.json());
+      const sel = document.getElementById("projectSelect");
+      sel.innerHTML = data.projects.map(p => `<option value="${p.id}">${p.title}</option>`).join("");
+      const target = selectId || (data.projects[0] && data.projects[0].id);
+      if (target) {
+        sel.value = target;
+        await loadProject(target);
+      }
+    }
+
+    async function loadProject(id) {
+      const p = await fetch(`/api/projects/${id}`).then(r => r.json());
+      currentProject = p;
+      document.getElementById("projTitle").value = p.title || "";
+      document.getElementById("projStyle").value = p.style || "stickman_west_3d";
+      document.getElementById("projCharSheet").value = p.character_sheet || "";
+      document.getElementById("projCustomStyle").value = p.custom_style || "";
+      document.getElementById("projVoice").value = p.voice || "fr-FR-RemyMultilingualNeural";
+      document.getElementById("projSpeed").value = p.speed || 1.06;
+      document.getElementById("speedVal").textContent = p.speed || 1.06;
+      document.getElementById("projSubs").checked = p.subtitles !== false;
+      toggleCustomStyle();
+      renderShotsUI();
+      updateVideoPlayer(p.video_url);
+    }
+
+    function toggleCustomStyle() {
+      const st = document.getElementById("projStyle").value;
+      document.getElementById("customStyleBox").style.display = st === "custom" ? "block" : "none";
+    }
+
+    function updateVideoPlayer(url) {
+      const vid = document.getElementById("videoPlayer");
+      const dl = document.getElementById("downloadVideoBtn");
+      if (url) {
+        vid.src = url;
+        dl.href = url;
+        dl.style.display = "inline-flex";
+      } else {
+        vid.removeAttribute("src");
+        vid.load();
+        dl.style.display = "none";
+      }
+    }
+
+    function renderShotsUI() {
+      const box = document.getElementById("shotsContainer");
+      const shots = currentProject.shots || [];
+      document.getElementById("shotCount").textContent = shots.length;
+      box.innerHTML = shots.map((sh, idx) => `
+        <div class="shot-card">
+          <div class="shot-thumb" id="thumb_${sh.id}">
+            <span class="shot-num">#${idx + 1}</span>
+            ${sh.image ? `<img src="${sh.image}" alt="Plan ${idx + 1}" />` : `<span>Aucune image<br/>Cliquez sur<br/>🎨 Générer HD</span>`}
+            ${sh.provider ? `<span class="provider-tag">${escapeHtml(sh.provider)}</span>` : ``}
+          </div>
+          <div class="shot-fields">
+            <div>
+              <label>Texte dit par la Voix Off</label>
+              <textarea rows="2" oninput="updateShotField(${idx}, 'narration', this.value)">${escapeHtml(sh.narration || "")}</textarea>
+            </div>
+            <div>
+              <label>Action visuelle de la scène (en français ou anglais)</label>
+              <textarea rows="2" oninput="updateShotField(${idx}, 'prompt', this.value)">${escapeHtml(sh.prompt || "")}</textarea>
+            </div>
+            <div class="shot-row-2">
+              <div>
+                <label>Mouvement Caméra</label>
+                <select onchange="updateShotField(${idx}, 'camera', this.value)">
+                  ${CAMERAS.map(c => `<option value="${c.id}" ${sh.camera === c.id ? "selected" : ""}>${c.label}</option>`).join("")}
+                </select>
+              </div>
+              <div>
+                <label>Effet Sonore (SFX)</label>
+                <select onchange="updateShotField(${idx}, 'sfx', this.value)">
+                  ${SFX_LIST.map(s => `<option value="${s.id}" ${sh.sfx === s.id ? "selected" : ""}>${s.label}</option>`).join("")}
+                </select>
+              </div>
+            </div>
+            <div class="shot-actions">
+              <button id="btnGen_${sh.id}" class="btn-accent" onclick="generateShotImage(${idx})">🎨 Générer Image HD (FLUX / Gemini)</button>
+              <label class="btn" style="margin:0; text-transform:none; color:var(--text);">
+                📁 Importer image
+                <input type="file" accept="image/*" style="display:none;" onchange="uploadShotImage(${idx}, this)" />
+              </label>
+              <button class="btn-danger" onclick="removeShot(${idx})" title="Supprimer ce plan">✕</button>
+            </div>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function escapeHtml(s) {
+      return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    }
+
+    function updateShotField(idx, field, val) {
+      currentProject.shots[idx][field] = val;
+    }
+
+    function addEmptyShot() {
+      currentProject.shots.push({
+        id: "shot_" + Math.random().toString(36).slice(2, 8),
+        narration: "",
+        prompt: "",
+        camera: "zoom_in",
+        sfx: "none",
+        image: null
+      });
+      renderShotsUI();
+    }
+
+    function removeShot(idx) {
+      if (currentProject.shots.length <= 1) return alert("Gardez au moins un plan.");
+      currentProject.shots.splice(idx, 1);
+      renderShotsUI();
+    }
+
+    async function createNewProject() {
+      const p = await fetch("/api/projects", { method: "POST" }).then(r => r.json());
+      await refreshProjectList(p.id);
+    }
+
+    function collectProjectPayload() {
+      return {
+        title: document.getElementById("projTitle").value.trim() || "Projet sans titre",
+        style: document.getElementById("projStyle").value,
+        character_sheet: document.getElementById("projCharSheet").value,
+        custom_style: document.getElementById("projCustomStyle").value,
+        voice: document.getElementById("projVoice").value,
+        speed: parseFloat(document.getElementById("projSpeed").value),
+        subtitles: document.getElementById("projSubs").checked,
+        shots: currentProject.shots
+      };
+    }
+
+    async function saveCurrentProject() {
+      if (!currentProject) return;
+      const payload = collectProjectPayload();
+      currentProject = await fetch(`/api/projects/${currentProject.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      }).then(r => r.json());
+      const sel = document.getElementById("projectSelect");
+      const opt = Array.from(sel.options).find(o => o.value === currentProject.id);
+      if (opt) opt.textContent = currentProject.title;
+    }
+
+    async function autoSplitScript() {
+      const raw = document.getElementById("rawScriptInput").value.trim();
+      if (!raw) return alert("Collez d'abord un texte d'histoire !");
+      const res = await fetch("/api/split-script", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ script: raw, style: document.getElementById("projStyle").value })
+      }).then(r => r.json());
+      currentProject.shots = res.shots;
+      renderShotsUI();
+      await saveCurrentProject();
+    }
+
+    async function generateShotImage(idx) {
+      await saveCurrentProject();
+      const sh = currentProject.shots[idx];
+      const btn = document.getElementById(`btnGen_${sh.id}`);
+      btn.disabled = true;
+      btn.textContent = "⏳ Rendu HD (~12s)...";
+      try {
+        const resp = await fetch(`/api/projects/${currentProject.id}/shots/${sh.id}/generate-image`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            prompt: sh.prompt || sh.narration,
+            style: document.getElementById("projStyle").value,
+            character_sheet: document.getElementById("projCharSheet").value,
+            custom_style: document.getElementById("projCustomStyle").value
+          })
+        });
+        const res = await resp.json();
+        if (!resp.ok) {
+          document.getElementById("keysBanner").classList.add("open");
+          throw new Error(res.detail || "Erreur serveur");
+        }
+        sh.image = res.image_url;
+        sh.provider = res.provider;
+        renderShotsUI();
+      } catch (e) {
+        alert(e.message);
+        btn.disabled = false;
+        btn.textContent = "🎨 Générer Image HD (FLUX / Gemini)";
+      }
+    }
+
+    async function uploadShotImage(idx, inputEl) {
+      if (!inputEl.files || !inputEl.files[0]) return;
+      await saveCurrentProject();
+      const sh = currentProject.shots[idx];
+      const fd = new FormData();
+      fd.append("file", inputEl.files[0]);
+      const res = await fetch(`/api/projects/${currentProject.id}/shots/${sh.id}/upload-image`, {
+        method: "POST",
+        body: fd
+      }).then(r => r.json());
+      sh.image = res.image_url;
+      sh.provider = "Image importée";
+      renderShotsUI();
+    }
+
+    async function previewVoice() {
+      const voice = document.getElementById("projVoice").value;
+      const speed = parseFloat(document.getElementById("projSpeed").value);
+      const sample = (currentProject && currentProject.shots[0] && currentProject.shots[0].narration)
+        || "Il a chargé son fusil avec de l'or et a tiré dans les murs de la mine !";
+      const blob = await fetch("/api/voice-preview", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ voice, speed, text: sample })
+      }).then(r => r.blob());
+      const audio = document.getElementById("voiceAudioPreview");
+      audio.src = URL.createObjectURL(blob);
+      audio.play();
+    }
+
+    async function renderVideo(genMissingOnly) {
+      await saveCurrentProject();
+      document.getElementById("btnRenderMissing").disabled = true;
+      document.getElementById("btnRenderAll").disabled = true;
+      const pBox = document.getElementById("progressBox");
+      pBox.style.display = "flex";
+      document.getElementById("progressFill").style.width = "5%";
+      document.getElementById("progressMsg").textContent = "Lancement du rendu...";
+
+      const { job_id } = await fetch(`/api/projects/${currentProject.id}/render?gen_missing_only=${genMissingOnly}`, {
+        method: "POST"
+      }).then(r => r.json());
+
+      const timer = setInterval(async () => {
+        const st = await fetch(`/api/jobs/${job_id}`).then(r => r.json());
+        document.getElementById("progressFill").style.width = `${st.progress || 0}%`;
+        document.getElementById("progressPct").textContent = `${st.progress || 0}%`;
+        document.getElementById("progressMsg").textContent = st.message || "";
+
+        if (st.status === "done") {
+          clearInterval(timer);
+          document.getElementById("btnRenderMissing").disabled = false;
+          document.getElementById("btnRenderAll").disabled = false;
+          if (st.project) {
+            currentProject = st.project;
+            renderShotsUI();
+          }
+          updateVideoPlayer(st.video_url);
+          document.getElementById("videoPlayer").play().catch(() => {});
+        } else if (st.status === "error") {
+          clearInterval(timer);
+          document.getElementById("btnRenderMissing").disabled = false;
+          document.getElementById("btnRenderAll").disabled = false;
+          document.getElementById("keysBanner").classList.add("open");
+          alert(st.message);
+        }
+      }, 1500);
+    }
+
+    init();
+  </script>
+</body>
+</html>

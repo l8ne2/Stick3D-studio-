@@ -1,0 +1,9 @@
+﻿keys.json
+custom_style_ref.jpg
+projects/
+__pycache__/
+.venv/
+*.mp4
+*.mp3
+*.wav
+keys.json

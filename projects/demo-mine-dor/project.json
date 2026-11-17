@@ -1,0 +1,70 @@
+{
+  "id": "demo-mine-dor",
+  "title": "Démo : La Mine d'Or Salée (Complet)",
+  "style": "stickman_west_3d",
+  "character_sheet": "Mineur stickman en chemise rouge à manches courtes, bretelles noires et casque de mineur 3D en cuir usé avec lampe frontale allumée",
+  "custom_style": "",
+  "voice": "fr-FR-RemyMultilingualNeural",
+  "speed": 1.06,
+  "subtitles": true,
+  "video_url": null,
+  "updated_at": 1794858784,
+  "shots": [
+    {
+      "id": "s1",
+      "narration": "Il a chargé son fusil avec de l'or et a tiré dans les murs de la mine. Son pote regarde l'or disparaître dans la roche.",
+      "prompt": "Dans le tunnel sombre d'une mine d'or éclairé par une lanterne suspendue, le mineur tire une gerbe étincelante de poussière d'or contre la paroi rocheuse pendant que son ami au bonnet jaune et pull vert écarquille les yeux sur son tabouret.",
+      "camera": "zoom_in",
+      "sfx": "gunshot",
+      "image": null
+    },
+    {
+      "id": "s2",
+      "narration": "Alors on tire de l'or dans une mine d'or ? Tu vois, ça s'appelle saler une mine.",
+      "prompt": "Gros plan rapproché : le mineur pose son fusil fumant sur l'épaule devant la paroi rocheuse incrustée d'or brillant et fait un grand clin d'œil malicieux pendant que son ami au bonnet jaune reste bouche bée derrière lui.",
+      "camera": "crash_zoom",
+      "sfx": "magic",
+      "image": null
+    },
+    {
+      "id": "s3",
+      "narration": "Il a creusé pendant 10 ans sans rien trouver d'autre que de la pierre. Et demain, un homme riche vient l'acheter. Alors il a dépensé ses 100 derniers dollars en poussière d'or.",
+      "prompt": "Au soleil devant l'entrée en bois de la mine, le mineur brandit avec enthousiasme un journal titré MILLIONAIRE DUE TOMORROW à côté de son ami au bonnet jaune tout sourire.",
+      "camera": "pan_right",
+      "sfx": "kaching",
+      "image": null
+    },
+    {
+      "id": "s4",
+      "narration": "Le lendemain matin, le riche débarque en costume blanc et se cogne la tête sur la première poutre. Mais il a amené un expert, et l'expert n'est pas stupide.",
+      "prompt": "Devant la mine marquée SURE THING MINE et une voiture ancienne blanche, un grand riche moustachu en costume blanc et haut-de-forme blanc se cogne la tête contre la poutre d'entrée à côté d'un petit géologue en veste violette et monocle.",
+      "camera": "shake_boom",
+      "sfx": "bonk",
+      "image": null
+    },
+    {
+      "id": "s5",
+      "narration": "Il casse un morceau du mur, le rince dans une batée, et des paillettes d'or tourbillonnent au fond. Mais sous sa loupe, chaque paillette est plate. Quelqu'un a tiré cet or dans le mur.",
+      "prompt": "Très gros plan macro à travers une loupe en laiton montrant une paillette d'or complètement plate et écrasée sur la pointe d'une lame de couteau, tenue par le géologue à monocle.",
+      "camera": "crash_zoom",
+      "sfx": "suspense",
+      "image": null
+    },
+    {
+      "id": "s6",
+      "narration": "Mais le riche éclate de rire : Pourquoi quelqu'un tirerait de l'or dans un mur ? C'est complètement fou ! Et son pote hoche la tête : Complètement fou. Alors le riche paie.",
+      "prompt": "Le mineur et son ami au bonnet jaune s'enfuient à toute vitesse sur les rails vers la sortie ensoleillée avec une mallette débordant de billets verts pendant que le riche en costume blanc salue derrière eux.",
+      "camera": "zoom_in",
+      "sfx": "laugh",
+      "image": null
+    },
+    {
+      "id": "s7",
+      "narration": "Et pendant que les deux filent avec l'argent, il reste derrière, allume un bâton de dynamite de son costume, le jette comme un pétard et court. Et quand la poussière retombe, il y a un filon de vrai or épais comme le bras, trois mètres plus loin que là où l'autre a abandonné.",
+      "prompt": "Dans le tunnel de la mine, au premier plan un mètre ruban jaune posé au sol à côté du casque abandonné du mineur et d'une pioche mène deux mètres plus loin à un immense filon d'or pur brillant dans la roche devant le riche qui danse de joie.",
+      "camera": "pull_back",
+      "sfx": "explosion",
+      "image": null
+    }
+  ]
+}

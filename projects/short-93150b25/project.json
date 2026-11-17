@@ -1,0 +1,59 @@
+{
+  "id": "short-93150b25",
+  "title": "Nouveau Short Stickman 3D",
+  "style": "stickman_west_3d",
+  "character_sheet": "Stickman en chemise rouge à manches courtes, bretelles noires et chapeau 3D en cuir usé",
+  "custom_style": "",
+  "voice": "fr-FR-VivienneMultilingualNeural",
+  "speed": 1.15,
+  "subtitles": false,
+  "video_url": "/api/projects/short-93150b25/video?t=1794860579",
+  "updated_at": 1794860579,
+  "shots": [
+    {
+      "id": "shot_2f6f88",
+      "narration": "Il a creusé pendant trente jours, et ce qu'il a trouvé au fond de cette mine n'aurait jamais dû exister. Un mineur creuse seul dans une vieille mine abandonnée, au fond d'une montagne.",
+      "prompt": "Il a creusé pendant trente jours, et ce qu'il a trouvé au fond de cette mine n'aurait jamais dû exister. Un mineur creuse seul dans une vieille mine abandonnée, au fond d'une montagne.",
+      "camera": "zoom_in",
+      "sfx": "none",
+      "image": "/api/projects/short-93150b25/shot-image/shot_2f6f88?t=1794860037",
+      "provider": "FLUX.1-dev"
+    },
+    {
+      "id": "shot_ba3b80",
+      "narration": "Soudain, son pic frappe le mur, et la roche sonne creux. Il dégage les pierres et découvre une porte en or, couverte de symboles brillants.",
+      "prompt": "Soudain, son pic frappe le mur, et la roche sonne creux. Il dégage les pierres et découvre une porte en or, couverte de symboles brillants.",
+      "camera": "crash_zoom",
+      "sfx": "bonk",
+      "image": "/api/projects/short-93150b25/shot-image/shot_ba3b80?t=1794860091",
+      "provider": "FLUX.1-merged"
+    },
+    {
+      "id": "shot_d150f5",
+      "narration": "Il pousse la porte, et une salle immense s'ouvre devant lui, remplie de lingots d'or jusqu'au plafond. Au centre, un coffre porte une pancarte : prends un seul lingot, et pars.",
+      "prompt": "Il pousse la porte, et une salle immense s'ouvre devant lui, remplie de lingots d'or jusqu'au plafond. Au centre, un coffre porte une pancarte : prends un seul lingot, et pars.",
+      "camera": "zoom_in",
+      "sfx": "magic",
+      "image": "/api/projects/short-93150b25/shot-image/shot_d150f5?t=1794860346",
+      "provider": "FLUX.1-merged"
+    },
+    {
+      "id": "shot_20da07",
+      "narration": "Mais le mineur sourit, et il remplit son sac avec tout ce qu'il peut porter. Derrière lui, la porte se referme dans un grondement, et les murs commencent à trembler.",
+      "prompt": "Mais le mineur sourit, et il remplit son sac avec tout ce qu'il peut porter. Derrière lui, la porte se referme dans un grondement, et les murs commencent à trembler.",
+      "camera": "pull_back",
+      "sfx": "none",
+      "image": "/api/projects/short-93150b25/shot-image/shot_20da07?t=1794860432",
+      "provider": "FLUX.1-merged"
+    },
+    {
+      "id": "shot_6532c9",
+      "narration": "Il lâche le sac, court vers la sortie, et se faufile de justesse avant que la salle s'effondre. Dehors, il regarde sa main : il a gardé un seul lingot, et c'était largement assez.",
+      "prompt": "Il lâche le sac, court vers la sortie, et se faufile de justesse avant que la salle s'effondre. Dehors, il regarde sa main : il a gardé un seul lingot, et c'était largement assez.",
+      "camera": "zoom_in",
+      "sfx": "none",
+      "image": "/api/projects/short-93150b25/shot-image/shot_6532c9?t=1794860489",
+      "provider": "FLUX.1-merged"
+    }
+  ]
+}
